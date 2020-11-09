@@ -1,0 +1,15 @@
+<!--catList.wxml-->
+<view class="">
+  <view>
+    <button class="btn-new" type="primary" bindtap="onTapCreate">添加新猫猫</button>
+  </view>
+
+  <block wx:for="{{catList}}" wx:key="_id">
+    <view class="cat-list list-{{index}}" data-catid="{{item._id}}" bindtap="onTapCat">
+      <image class="cat-avatar" src="{{item.avatarUrl}}" mode="aspectFill" ></image>
+      <view class="cat-name">{{item.name}}</view>
+      <image class="cat-gender" src="{{item.genderIconUrl}}"></image>
+    </view>
+  </block>
+
+</view>

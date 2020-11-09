@@ -1,0 +1,99 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+} 
+
+.form-section {
+  margin: 32rpx 0 32rpx 0;
+}
+
+.form-item {
+  margin: 16rpx 0 16rpx 0;
+}
+
+.form-section-inline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.form-item-inline {
+  margin: 16rpx;
+}
+
+.form-input {
+  height: 60rpx;
+  padding: 2rpx 16rpx;
+  border-radius: 8rpx;
+  border: solid #aaaaaa 4rpx;
+}
+
+.form-textarea {
+  min-height: 60rpx;
+}
+
+.cat-avatar {
+  width: 200rpx;
+  height: 200rpx;
+  /* border-radius: 50%; */
+  background-size: cover;
+  background-color: white;
+}
+
+.cat-avatar[size] {
+  width: 200rpx;
+}
+
+.label-item {
+  color: #555;
+  font-size: 32rpx;
+}
+
+.content-item {
+  font-size: 40rpx
+}
+
+.cat-avatar:after {
+  border: none;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.radio-group-section {
+  margin-right: 48rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.radio-group-item {
+  margin-right: 4rpx;
+}
+
+.gender-icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.form-btn-area {
+  margin: 80rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-btn {
+  margin: 16rpx;
+}
+
+.hover-poiner:hover {
+  cursor: pointer;
+}

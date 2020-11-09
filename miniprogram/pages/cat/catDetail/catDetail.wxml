@@ -1,0 +1,47 @@
+<!--catDetail.wxml-->
+<view class="container">
+  <view class="page-body">
+    <form action="post" bindsubmit="submitForm">
+
+      <view class="form-section form-section-inline hover-pointer" bindtap="onUploadAvatar">
+        <image
+          name="avatarUrl"
+          class="cat-avatar form-item-inline"
+          src="{{avatarUrl}}"
+          mode="aspectFill"
+        ></image>
+        <button class="form-btn edit-btn" size="mini" type="default" bindtap="onTapEdit">编辑</button>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">猫猫: </view>
+        <view class="form-section-inline form-item">
+          <view name="name" class="form-item form-item-inline content-item">{{name}}</view>
+          <image class="gender-icon form-item-inline" src="{{genderIconUrl}}"></image>
+        </view>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">特点: </view>
+        <text name="description" class="form-item form-input form-textarea content-item">{{description}}</text>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">出没地点: </view>
+        <text name="area" class="form-item form-input form-textarea content-item">{{area}}</text>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">社会关系: </view>
+        <text name="relationship" class="form-item form-input form-textarea content-item">{{relationship}}</text>
+      </view>
+
+      <view class="form-btn-area">
+        <button class="form-btn" type="primary" bindtap="onTapBack">返回列表</button>
+        <button class="form-btn" type="warn" bindtap="onTapDelete">删除</button>
+      </view>
+
+    </form>
+
+  </view>
+</view>

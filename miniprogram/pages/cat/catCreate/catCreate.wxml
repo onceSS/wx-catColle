@@ -1,0 +1,61 @@
+<!--catCreate.wxml-->
+<view class="container">
+  <view class="page-body">
+    <form>
+
+      <view class="form-section form-section-inline hover-pointer" bindtap="onTapUploadAvatar">
+        <image
+          name="avatarUrl"
+          class="cat-avatar form-item-inline"
+          style="background-image: url('../../../images/baseIcon/cat_pre.jpeg')"
+          src="{{avatarUrl}}"
+          mode="aspectFill"
+        ></image>
+        <input hidden name="avatarUrl" model:value="{{avatarUrl}}" />
+        <view class="form-item-inline label-item">点击上传猫猫照片</view>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">猫猫名字: </view>
+        <input name="name" class="form-item form-input" type="text" focus="true" placeholder="输入猫猫的名字" model:value="{{name}}" bindinput="bindInput" />
+      </view>
+    
+      <view class="form-section" >
+        <view class="form-item label-item">性别: </view>
+        <radio-group name="radio" class="radio-group form-item" bindchange="onRadioChange">
+          <view class="radio-group-section">
+            <radio class="radio-group-item" value="1" checked="{{radio.male}}"/><image class="gender-icon" src="../../../images/baseIcon/gender/male.svg"></image>
+          </view>
+          <view class="radio-group-section">
+            <radio class="radio-group-item" value="2" checked="{{radio.female}}"/><image class="gender-icon" src="../../../images/baseIcon/gender/female.svg"></image>
+          </view>
+          <view class="radio-group-section">
+            <radio class="radio-group-item" value="0" checked="{{radio.unknown}}"/><image class="gender-icon" src="../../../images/baseIcon/gender/unknown.svg"></image>
+          </view>
+        </radio-group>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">特点: </view>
+        <textarea name="description" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="">{{description}}</textarea>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">出没地点: </view>
+        <textarea name="area" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="">{{area}}</textarea>
+      </view>
+
+      <view class="form-section">
+        <view class="form-item label-item">社会关系: </view>
+        <textarea name="relationship" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="">{{relationship}}</textarea>
+      </view>
+
+      <view class="form-btn-area">
+        <button class="form-btn" type="primary" bindtap="onTapSubmit">提交</button>
+        <button class="form-btn" type="warn" bindtap="onTapCancel">取消</button>
+      </view>
+
+    </form>
+
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="container">
+  <image-cropper id="image-cropper" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut"
+    limit_move="{{limit_move}}" disable_rotate="{{disable_rotate}}" width="{{width}}" height="{{height}}"
+    imgSrc="{{imageUrl}}" angle="{{angle}}" disable_width="{{disable_width}}" max_width="{{max_width}}"
+    max_height="{{max_height}}" disable_height="{{disable_height}}" disable_ratio="{{disable_ratio}}">
+  </image-cropper>
+  <view class='bottom'>
+    <button class="bottonm-btn" type="default" bindtap='cancel'>取消</button>
+    <button class="bottonm-btn" type="primary" bindtap='submit'>确定</button>
+  </view>
+</view>

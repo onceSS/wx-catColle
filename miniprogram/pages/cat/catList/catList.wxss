@@ -1,0 +1,41 @@
+/**catList.wxss**/
+
+.btn-new {
+  margin: 32rpx;
+}
+
+.cat-list {
+  padding-left: 80rpx;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
+  margin-top: 0rpx;
+  height: 160rpx;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.list-0 {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cat-avatar {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.cat-name {
+  font-size: 40rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.cat-gender {
+  width: 50rpx;
+  height: 50rpx;
+}
