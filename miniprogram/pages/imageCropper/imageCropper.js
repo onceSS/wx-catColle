@@ -58,8 +58,18 @@ Page({
   submit(){
     this.cropper.getImg((obj)=>{
       console.log('obj.url', obj.url)
-      app.globalData.imgUrl = obj.url
-      router.pop()
+      app.globalData.imageUrl = obj.url
+      let arr = getCurrentPages()
+      let previousPage = arr[arr.length - 2]
+      wx.navigateBack({
+        delta: 0,
+        success: function(res){
+
+          previousPage.setData({
+            avatarUrl: obj.url
+          })
+        }
+      })
     })
   },
 

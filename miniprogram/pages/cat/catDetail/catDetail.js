@@ -53,7 +53,7 @@ Page({
     if(this.data.isFromList==1) {
       router.pop()
     } else {
-      router.relauch({
+      router.relaunch({
         name: 'catList'
       })
     }
@@ -71,7 +71,7 @@ Page({
           db.collection('cat').doc(catId).remove()
           .then(res => {
             console.log(res.data)
-            router.relauch({
+            router.relaunch({
               name: 'catList',
               data: {
                 deletedCatId: catId
@@ -86,7 +86,7 @@ Page({
   },
 
   onTapEdit: function(){
-    router.push({
+    router.replace({
       name: 'catCreate',
       data: this.data
     })

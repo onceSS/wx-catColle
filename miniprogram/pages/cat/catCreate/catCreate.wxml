@@ -37,17 +37,17 @@
 
       <view class="form-section">
         <view class="form-item label-item">特点: </view>
-        <textarea name="description" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="">{{description}}</textarea>
+        <textarea name="description" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="" model:value="{{description}}"></textarea>
       </view>
 
       <view class="form-section">
         <view class="form-item label-item">出没地点: </view>
-        <textarea name="area" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="">{{area}}</textarea>
+        <textarea name="area" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="" model:value="{{area}}"></textarea>
       </view>
 
       <view class="form-section">
         <view class="form-item label-item">社会关系: </view>
-        <textarea name="relationship" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="">{{relationship}}</textarea>
+        <textarea name="relationship" class="form-item form-input form-textarea" cols="30" rows="10" auto-height adjust-position placeholder="" model:value="{{relationship}}"></textarea>
       </view>
 
       <view class="form-btn-area">

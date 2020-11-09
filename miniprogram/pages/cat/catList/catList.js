@@ -8,11 +8,11 @@ Page({
   },
 
   onLoad: function() {
-    this.getCatList();
     console.log('catList onLoad()')
   },
 
   onShow: function(options) {
+    this.getCatList();
     console.log('catList onShow()', options)
 
   },

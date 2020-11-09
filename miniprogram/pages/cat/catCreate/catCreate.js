@@ -21,8 +21,8 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log('catList.onLoad',options)
     const optionsData = router.extract(options);
+    console.log('catCreate.onLoad',optionsData)
     if(optionsData != null){
       this.setData({
         avatarUrl: optionsData.avatarUrl,
@@ -57,9 +57,9 @@ Page({
 
   onShow() {
     console.log('imageUrl',app.globalData.imageUrl)
-    this.setData({
-      avatarUrl: app.globalData.imageUrl
-    })
+    // this.setData({
+    //   avatarUrl: app.globalData.imageUrl
+    // })
   },
 
   onRadioChange: function(e){
@@ -79,16 +79,17 @@ Page({
       return
     }
     //submit
+    console.log('isEdit',this.data.isEdit)
     if(this.data.isEdit == 1){
-      updateCat()
+      this.updateCat()
     }else{
-      createCat()
+      this.createCat()
     }
   },
 
   createCat: async function(){
     //insert数据库记录
-    const db = await wx.cloud.database();
+    const db = wx.cloud.database();
     await db.collection('cat').add({
       data: {
         avatarUrl: '',
@@ -106,7 +107,7 @@ Page({
     })
 
     //上传avatar
-    let fileId = this.uploadImage(this.data.catId, this.data.avatarUrl)
+    let fileId = await this.uploadImage(this.data.catId, this.data.avatarUrl)
     
     console.log('catId', this.data.catId)
     //将图片地址插入到刚刚的记录中
@@ -131,6 +132,14 @@ Page({
   },
 
   updateCat: async function(){
+    console.log('avatarUrl', this.data.avatarUrl + ',' + this.data.nativeAvatarUrl)
+    if(this.data.avatarUrl != this.data.nativeAvatarUrl){
+      let fileId = await this.uploadImage(this.data.catId, this.data.avatarUrl)
+      this.setData({
+        avatarUrl: fileId
+      })
+    }
+
     const db = wx.cloud.database()
     db.collection('cat').doc(this.data.catId).update({
       data:{
@@ -143,7 +152,13 @@ Page({
       }
     })
 
-    
+    router.replace({
+      name: 'catDetail',
+      data: {
+        is_from_list: 0,
+        cat_id: this.data.catId
+      }
+    })
 
   },
 
@@ -186,14 +201,14 @@ Page({
       digestAlgorithm: 'md5'
     }).then(res => {
       imageMd5 = res.digest
-      //console.log('md5 got', avataimageMd5)
+      console.log('md5 got', imageMd5)
     })
 
     //获取后缀名
-    let ext = imageUrl.substr(position);
+    let ext = imageUrl.substr(imageUrl.indexOf('.')+1);
     //拼接云端storage地址
     let cloudpath = 'cat/' + catId + '/' + imageMd5 + ext
-    //console.log('cloudpath', cloudpath)
+    console.log('cloudpath', cloudpath)
     let fileId = ''
     await wx.cloud.uploadFile({
       cloudPath: cloudpath,
@@ -209,8 +224,9 @@ Page({
     wx.chooseImage({
       success: async chooseResult => {
         const path = chooseResult.tempFilePaths[0];
+        console.log('native_path', path)
 
-        app.globalData.imgUrl = ''
+        app.globalData.imageUrl = ''
 
         await router.push({
           name: 'imageCropper',
@@ -218,7 +234,6 @@ Page({
             imageUrl: path,
           },
         })
-
       }
     })
   },
