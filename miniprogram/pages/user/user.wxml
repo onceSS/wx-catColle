@@ -1,0 +1,31 @@
+<!--pages/user/user.wxml-->
+<view>
+  <view class="user-area">
+    <view class="user-avatar-view">
+      <image
+        class="user-avatar"
+        style="background-image: url('../../images/user_placeholder.png')"
+        src="{{userAvatarUrl}}"
+        mode="aspectFill"
+      ></image>
+    </view>
+    <view class="user-info-view">
+      <view wx:if="{{isAuthed}}">
+        <view class="user-text">{{userName}}</view>
+      </view>
+      <view wx:else>
+        <button
+          class="auth-btn"
+          open-type="getUserInfo" 
+          bindgetuserinfo="onGetUserInfo"
+          type="primary"
+        >点击授权</button>
+      </view>
+    </view>
+
+  </view>
+
+
+<button bintap="onTapOpenid">openid</button>
+
+</view>

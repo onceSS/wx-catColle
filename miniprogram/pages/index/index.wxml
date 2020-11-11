@@ -1,4 +1,5 @@
 <!--index.wxml-->
 <view class="container">
+<view>index page</view>
 
 </view>

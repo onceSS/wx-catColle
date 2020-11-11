@@ -15,6 +15,9 @@ App({
       })
     }
 
+    
+
+
     this.globalData = {
       CloudStoragePrefix: 'cloud://njfucat-4g7qfz6745d2625b.6e6a-njfucat-4g7qfz6745d2625b-1304095047',
       imageUrl: ''
