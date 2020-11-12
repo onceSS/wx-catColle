@@ -26,6 +26,6 @@
   </view>
 
 
-<button bintap="onTapOpenid">openid</button>
+<button bindtap="onTapOpenid">openid</button>
 
 </view>
