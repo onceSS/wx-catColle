@@ -2,29 +2,29 @@ const app = require('../../app')
 
 const ROLE = [
   {
-    role = 'guest',
-    roleName = '游客',
-    privilege = ['read','apply']
+    role: 'guest',
+    roleName: '游客',
+    privilege: ['read','apply']
   },
   {
-    role = 'worker',
-    roleName = '工作人员',
-    privilege = ['read','apply', 'review']
+    role: 'worker',
+    roleName: '工作人员',
+    privilege: ['read','apply', 'review']
   },
   {
-    role = 'admin',
-    roleName = '管理员',
-    privilege = ['read','apply', 'review', 'grant']
+    role: 'admin',
+    roleName: '管理员',
+    privilege: ['read','apply', 'review', 'grant']
   },
 ]
 
 const PRIVILEGE = [
-  {code = 'ban', name = '封禁'},
-  {code = 'read', name = '查询'},
-  {code = 'apply', name = '申请添加/编辑猫猫'},
-  {code = 'review', name = '审核申请'},
-  {code = 'grant', name = '赋予权限'},
-  {code = 'private', name = '私人猫猫'},
+  {code: 'ban', name: '封禁'},
+  {code: 'read', name: '查询'},
+  {code: 'apply', name: '申请添加/编辑猫猫'},
+  {code: 'review', name: '审核申请'},
+  {code: 'grant', name: '赋予权限'},
+  {code: 'private', name: '私人猫猫'},
 ]
 
 const getRole = function () {
@@ -73,9 +73,9 @@ const showPrivilege = function(thisRole) {
     }
   }
   return {
-    role = thisRole,
-    roleName = thisRoleName,
-    privilege = thisPrivilege
+    role: thisRole,
+    roleName: thisRoleName,
+    privilege: thisPrivilege
   }
 }
 

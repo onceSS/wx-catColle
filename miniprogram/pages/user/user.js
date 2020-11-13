@@ -9,7 +9,9 @@ Page({
     userName: '',
     userAvatarUrl: '',
     userGender: 0,
-    userOpenid: ''
+    userOpenid: '',
+    role: '',
+    roleName: ''
   },
 
   /**
@@ -89,23 +91,48 @@ Page({
     let userInfo = e.detail.userInfo
     this.setUserInfo(userInfo)
   },
-
-  onTapOpenid: function () {
-    wx.cloud.callFunction({
-      name: 'getOpenData',
+  onTapBtn() {
+    const db = wx.cloud.database()
+    db.collection('user').where({
+      _openid: ''
+    }).get({
+      success: function(res) {
+        console.log('res',res.data)
+      }
     })
-    .then(res => {
-      console.log(res.result) // 3
-    })
-    .catch(console.error)
   },
 
-  setUserInfo(userInfo) {
+  async setUserInfo(userInfo) {
+    let role = ''
+    let roleName = ''
+    const db = wx.cloud.database()
+    await db.collection('user').where({
+      _openid: ''
+    }).get({
+      success: function(res) {
+        if(isNull(res.data[0])) {
+          db.collection('user').add({
+            data: {
+              role: 'guest',
+              roleName: '游客'
+            }
+          })
+          role = 'guest'
+          roleName = '游客'
+        } else {
+          role = res.data[0].role
+          roleName = res.data[0].roleName
+        }
+      }
+    })
+
     this.setData({
       userName: userInfo.nickName,
       userAvatarUrl: userInfo.avatarUrl,
       userGender: userInfo.gender,
-      isAuthed: true
+      isAuthed: true,
+      role: role,
+      roleName: roleName
     })
   }
 })

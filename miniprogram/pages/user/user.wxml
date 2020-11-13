@@ -22,10 +22,20 @@
         >点击授权</button>
       </view>
     </view>
-
   </view>
 
+  <view>
+    <view class="down-list-item">
+      头衔: {{roleName}}
+    </view>
+    <view class="down-list-item">
+      申请加入
+    </view>
+    <view class="down-list-item">
+      关于
+    </view>
+  </view>
 
-<button bindtap="onTapOpenid">openid</button>
+  <button bindtap="onTapBtn">wertyu</button>
 
 </view>
