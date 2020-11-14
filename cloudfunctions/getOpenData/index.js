@@ -5,7 +5,7 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  return cloud.getOpenData({
+  return await cloud.getOpenData({
     list: event.openData.list,
   })
 }

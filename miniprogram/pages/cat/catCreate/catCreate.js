@@ -56,10 +56,6 @@ Page({
   },
 
   onShow() {
-    console.log('imageUrl',app.globalData.imageUrl)
-    // this.setData({
-    //   avatarUrl: app.globalData.imageUrl
-    // })
   },
 
   onRadioChange: function(e){
@@ -72,7 +68,7 @@ Page({
 
   bindInput: function(){},
 
-  onTapSubmit: async function(){
+  onTapSubmit: function(){
 
     //check
     if(this.submitCheck() != 1) {
@@ -107,7 +103,7 @@ Page({
     })
 
     //上传avatar
-    let fileId = await this.uploadImage(this.data.catId, this.data.avatarUrl)
+    let fileId = this.uploadImage(this.data.catId, this.data.avatarUrl)
     
     console.log('catId', this.data.catId)
     //将图片地址插入到刚刚的记录中
@@ -131,10 +127,10 @@ Page({
     
   },
 
-  updateCat: async function(){
+  updateCat: function(){
     console.log('avatarUrl', this.data.avatarUrl + ',' + this.data.nativeAvatarUrl)
     if(this.data.avatarUrl != this.data.nativeAvatarUrl){
-      let fileId = await this.uploadImage(this.data.catId, this.data.avatarUrl)
+      let fileId = this.uploadImage(this.data.catId, this.data.avatarUrl)
       this.setData({
         avatarUrl: fileId
       })
@@ -222,13 +218,13 @@ Page({
 
   onTapUploadAvatar: function() {
     wx.chooseImage({
-      success: async chooseResult => {
+      success: chooseResult => {
         const path = chooseResult.tempFilePaths[0];
         console.log('native_path', path)
 
         app.globalData.imageUrl = ''
 
-        await router.push({
+        router.push({
           name: 'imageCropper',
           data: {
             imageUrl: path,

@@ -21,10 +21,10 @@ Page({
     router.push({name: 'catCreate'})
   },
 
-  getCatList: async function() {
+  getCatList: function() {
     let nativeCatList = [];
     const db = wx.cloud.database();
-    await db.collection('cat').get()
+    db.collection('cat').get()
     .then(res => {
       nativeCatList = res.data;
     })

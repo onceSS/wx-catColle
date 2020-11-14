@@ -15,7 +15,7 @@ Page({
     relationship: ''
   },
 
-  onLoad: async function(options) {
+  onLoad: function(options) {
     const optionsData = router.extract(options);
     console.log('optionsData', optionsData);
     if(optionsData.is_from_list == 0) {
@@ -25,7 +25,7 @@ Page({
     }
 
     const db = wx.cloud.database();
-    await db.collection('cat').doc(optionsData.cat_id).get()
+    db.collection('cat').doc(optionsData.cat_id).get()
     .then(res => {
       let genderIconUrl = '';
       if(res.data.gender==1) {

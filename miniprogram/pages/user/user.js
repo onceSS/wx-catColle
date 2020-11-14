@@ -11,7 +11,8 @@ Page({
     userGender: 0,
     userOpenid: '',
     role: '',
-    roleName: ''
+    roleName: '',
+    openid: ''
   },
 
   /**
@@ -92,37 +93,39 @@ Page({
     this.setUserInfo(userInfo)
   },
   onTapBtn() {
-    const db = wx.cloud.database()
-    db.collection('user').where({
-      _openid: ''
-    }).get({
-      success: function(res) {
-        console.log('res',res.data)
+    wx.cloud.callFunction({
+      name: 'getOpenData',
+      success(res) {
+        console.log('res', res.result.openid)
       }
     })
   },
 
   async setUserInfo(userInfo) {
-    let role = ''
-    let roleName = ''
+    var role = ''
+    var roleName = ''
+    var openid = ''
+    await wx.cloud.callFunction({
+      name: 'getOpenData'
+    }).then(res => {
+      openid = res.result.openid
+    })
     const db = wx.cloud.database()
     await db.collection('user').where({
-      _openid: ''
-    }).get({
-      success: function(res) {
-        if(isNull(res.data[0])) {
-          db.collection('user').add({
-            data: {
-              role: 'guest',
-              roleName: '游客'
-            }
-          })
-          role = 'guest'
-          roleName = '游客'
-        } else {
-          role = res.data[0].role
-          roleName = res.data[0].roleName
-        }
+      _openid: openid
+    }).get().then(res => {
+      if(res.data.length == 0) {
+        db.collection('user').add({
+          data: {
+            role: 'guest',
+            roleName: '游客'
+          }
+        })
+        role = 'guest'
+        roleName = '游客'
+      } else {
+        role = res.data[0].role
+        roleName = res.data[0].roleName
       }
     })
 
