@@ -17,7 +17,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/cat/catList/cat-list",
+        "pagePath": "pages/cat/cat-list/cat-list",
         "text": "名册",
         "iconPath": "images/tabIcon/viewlist.png",
         "selectedIconPath": "images/tabIcon/viewlist_selected.png"
