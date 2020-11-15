@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/cat/catList/catList",
+    "pages/cat/cat-list/cat-list",
     "pages/index/index",
     "pages/user/user",
     "pages/admin/admin",
@@ -17,7 +17,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/cat/catList/catList",
+        "pagePath": "pages/cat/catList/cat-list",
         "text": "名册",
         "iconPath": "images/tabIcon/viewlist.png",
         "selectedIconPath": "images/tabIcon/viewlist_selected.png"

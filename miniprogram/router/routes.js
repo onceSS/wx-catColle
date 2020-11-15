@@ -1,16 +1,16 @@
 module.exports = {
   // 主页
   catList: {
-    path: '/pages/cat/catList/catList',
+    path: '/pages/cat/cat-list/cat-list',
   },
   catCreate: {
-    path: '/pages/cat/catCreate/catCreate',
+    path: '/pages/cat/cat-create/cat-create',
   },
   catDetail: {
-    path: '/pages/cat/catDetail/catDetail',
+    path: '/pages/cat/cat-detail/cat-detail',
   },
   imageCropper: {
-    path: '/pages/imageCropper/imageCropper',
+    path: '/pages/image-cropper/image-cropper',
   },
 };
 

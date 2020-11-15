@@ -9,7 +9,7 @@ Component({
     list: [],
     tabbarList:[
       {
-        pagePath: "/pages/cat/catList/catList",
+        pagePath: "/pages/cat/cat-list/cat-list",
         text: "名册",
         iconPath: "../images/tabIcon/viewlist.png",
         selectedIconPath: "../images/tabIcon/viewlist_selected.png"
