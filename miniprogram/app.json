@@ -6,6 +6,9 @@
     "pages/admin/admin",
     "pages/cat/favorite/favorite"
   ],
+  "usingComponents": {
+    "custom-tab-bar": "custom-tab-bar/index"
+  },
   "tabBar": {
     "custom": true,
     "color": "#9e9e9e",
