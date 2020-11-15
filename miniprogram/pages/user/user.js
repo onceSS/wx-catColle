@@ -92,14 +92,6 @@ Page({
     let userInfo = e.detail.userInfo
     this.setUserInfo(userInfo)
   },
-  onTapBtn() {
-    wx.cloud.callFunction({
-      name: 'getOpenData',
-      success(res) {
-        console.log('res', res.result.openid)
-      }
-    })
-  },
 
   async setUserInfo(userInfo) {
     var role = ''

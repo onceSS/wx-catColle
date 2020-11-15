@@ -26,16 +26,17 @@
 
   <view>
     <view class="down-list-item">
+      <iconfont class="icon" icon="crown"></iconfont>
       头衔: {{roleName}}
     </view>
     <view class="down-list-item">
+      <iconfont class="icon" icon="add1"></iconfont>
       申请加入
     </view>
     <view class="down-list-item">
+      <iconfont class="icon" icon="about"></iconfont>
       关于
     </view>
   </view>
-
-  <button bindtap="onTapBtn">wertyu</button>
 
 </view>

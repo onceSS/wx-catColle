@@ -42,3 +42,6 @@
   align-items: center;
   color: #616161;
 }
+.icon {
+  margin-right: 40rpx;
+}
