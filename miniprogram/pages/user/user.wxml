@@ -25,15 +25,15 @@
   </view>
 
   <view>
-    <view class="down-list-item">
+    <view class="down-list-item" bindtap="onTapTitle">
       <iconfont class="icon" icon="crown"></iconfont>
-      头衔: {{roleName}}
+      身份: {{roleName}}
     </view>
-    <view class="down-list-item">
+    <view class="down-list-item" bindtap="onTapJoin">
       <iconfont class="icon" icon="add1"></iconfont>
       申请加入
     </view>
-    <view class="down-list-item">
+    <view class="down-list-item" bindtap="onTapAbout">
       <iconfont class="icon" icon="about"></iconfont>
       关于
     </view>

@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "iconfont": "../../components/iconfont/iconfont",
     "custom-tab-bar": "../../custom-tab-bar/index"
   }
 }
-

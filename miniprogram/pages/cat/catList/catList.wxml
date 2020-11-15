@@ -12,4 +12,6 @@
     </view>
   </block>
 
+  <button bindtap="onTapBtn">dsadfds</button>
+
 </view>

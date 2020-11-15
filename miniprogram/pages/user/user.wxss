@@ -19,7 +19,7 @@
   width: 200rpx;
   height: 200rpx;
   background-size: cover;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 50%;
   border: solid white;
 }
@@ -42,6 +42,11 @@
   align-items: center;
   color: #616161;
 }
+.down-list-item:hover {
+  background-color: #ddd;
+}
+
 .icon {
   margin-right: 40rpx;
+  color: #ff9800;
 }

@@ -12,6 +12,8 @@ Page({
   },
 
   onShow: function(options) {
+    this.getTabBar().setData({selected: 0})
+
     this.getCatList();
     console.log('catList onShow()', options)
 
@@ -56,6 +58,11 @@ Page({
         cat_id: e.currentTarget.dataset.catid
       }
     })
+  },
+
+  onTapBtn() {
+    var tabBar = this.getTabBar()
+    tabBar.setTabBar(2)
   }
 
 })

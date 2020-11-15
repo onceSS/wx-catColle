@@ -2,9 +2,12 @@
   "pages": [
     "pages/cat/catList/catList",
     "pages/index/index",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/admin/admin",
+    "pages/cat/favorite/favorite"
   ],
   "tabBar": {
+    "custom": true,
     "color": "#9e9e9e",
     "selectedColor": "#ff9800",
     "backgroundColor": "#fff",
@@ -17,10 +20,16 @@
         "selectedIconPath": "images/tabIcon/viewlist_selected.png"
       },
       {
-        "pagePath": "pages/cat/catList/catList",
+        "pagePath": "pages/cat/favorite/favorite",
         "text": "收藏",
         "iconPath": "images/tabIcon/favorites.png",
         "selectedIconPath": "images/tabIcon/favorites_selected.png"
+      },
+      {
+        "pagePath": "pages/admin/admin",
+        "text": "管理",
+        "iconPath": "images/tabIcon/admin.png",
+        "selectedIconPath": "images/tabIcon/admin_selected.png"
       },
       {
         "pagePath": "pages/user/user",

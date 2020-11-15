@@ -50,7 +50,9 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    let tabBar = this.getTabBar()
+    let order = tabBar.list.length - 1
+    tabBar.setData({selected: order})
   },
 
   /**
@@ -129,5 +131,15 @@ Page({
       role: role,
       roleName: roleName
     })
+  },
+
+  onTapTitle() {
+
+  },
+  onTapJoin() {
+
+  },
+  onTapAbout() {
+    
   }
 })
