@@ -1,4 +1,5 @@
 // pages/user/user.js
+import privilege from '../../privilege/index'
 Page({
 
   /**
@@ -99,11 +100,7 @@ Page({
     var role = ''
     var roleName = ''
     var openid = ''
-    await wx.cloud.callFunction({
-      name: 'getOpenData'
-    }).then(res => {
-      openid = res.result.openid
-    })
+    openid = privilege.getOpenid()
     const db = wx.cloud.database()
     await db.collection('user').where({
       _openid: openid

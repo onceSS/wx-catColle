@@ -35,8 +35,6 @@ Component({
     ]
   },
   attached() {
-    const app = getApp()
-    this.setTabBar(1)
   },
   methods: {
     switchTab(e) {

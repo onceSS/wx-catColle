@@ -1,5 +1,4 @@
-const app = require('../../app')
-
+const app = getApp()
 const ROLE = [
   {
     role: 'guest',
@@ -27,10 +26,44 @@ const PRIVILEGE = [
   {code: 'private', name: '私人猫猫'},
 ]
 
-const getRole = function () {
-  const db = wx.cloud.database()
-  db.collection('user').where()
+const getOpenid = async function() {
+  var openid = ''
+  if(app.globalData.userOpenid == '' ) {
+    await wx.cloud.callFunction({
+      name: 'getOpenData'
+    }).then(res => {
+      openid = res.result.openid
+      app.globalData.userOpenid = openid
+    })
+  } else {
+    openid = app.globalData.userOpenid == ''
+  }
+  return openid
+}
 
+const getRole = async function () {
+  var openid = getOpenid()
+  var thisRole = {}
+  const db = wx.cloud.database()
+  await db.collection('user').where({
+    _openid: openid
+  }).get().then(res => {
+    if(res.data.length == 0) {
+      app.globalData
+      thisRole = ROLE[0]
+    } else {
+      let i
+      for(i = 0; i < ROLE.length; i ++) {
+        if(res.data[0].role == ROLE[i].role) {
+          thisRole = ROLE[i]
+          break
+        }
+      }
+    }
+  })
+  app.globalData.role = thisRole.role
+  app.globalData.roleName = thisRole.roleName
+  return thisRole
 }
 
 const checkPrivilege = function(code) {
@@ -79,6 +112,10 @@ const showPrivilege = function(thisRole) {
   }
 }
 
+const initPrivilege = function() {
+
+}
+
 module.exports = {
-  checkPrivilege, showPrivilege
+  getOpenid, getRole, checkPrivilege, showPrivilege
 }

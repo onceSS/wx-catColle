@@ -1,21 +1,29 @@
 //catList.js
 const app = getApp()
 const router = require('../../../router/index');
+const privilege = require('../../../privilege/index')
 
 Page({
   data: {
     catList: []
   },
 
-  onLoad: function() {
+  onLoad: async function() {
     console.log('catList onLoad()')
+    let {role} = await privilege.getRole()
+    console.log('current user is ', role)
+    var tabBar = this.getTabBar()
+    if(role == 'guest') {
+      tabBar.setTabBar(1)
+    } else {
+      tabBar.setTabBar(2)
+    }
   },
 
-  onShow: function(options) {
+  onShow: function() {
     this.getTabBar().setData({selected: 0})
 
     this.getCatList();
-    console.log('catList onShow()', options)
 
   },
 
