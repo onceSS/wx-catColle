@@ -21,7 +21,8 @@ App({
       userOpenid: '',
       userRole: '',
       userRoleName: '',
-      userPrivilege: []
+      userPrivilege: [],
+      tabBarType: 0
     }
 
     

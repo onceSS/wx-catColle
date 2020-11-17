@@ -1,4 +1,4 @@
-
+const app = getApp()
 Component({
   data: {
     selected: 0,
@@ -7,7 +7,8 @@ Component({
     backgroundColor: "#fff",
     borderStyle: "white",
     list: [],
-    tabbarList:[
+    tabBarType: 0,
+    tabBarList:[
       {
         pagePath: "/pages/cat/cat-list/cat-list",
         text: "名册",
@@ -35,6 +36,7 @@ Component({
     ]
   },
   attached() {
+    this.setTabBar()
   },
   methods: {
     switchTab(e) {
@@ -46,18 +48,24 @@ Component({
         selected: data.index
       })
     },
-    setTabBar(type) {
+    setTabBar() {
+      var type = app.globalData.tabBarType
+      if(type == 0) {return}
+      if(this.data.tabBarType == type) {return}
+      console.log('real set tabBar, new type:', type)
       var list = []
       if(type == 1) {
         list = [
-          this.data.tabbarList[0], 
-          this.data.tabbarList[1], 
-          this.data.tabbarList[3]]
+          this.data.tabBarList[0], 
+          this.data.tabBarList[1], 
+          this.data.tabBarList[3]
+        ]
       } else if(type == 2) {
-        list = this.data.tabbarList
+        list = this.data.tabBarList
       }
       this.setData({
-        list: list
+        list: list,
+        tabBarType: type
       })
     }
   }

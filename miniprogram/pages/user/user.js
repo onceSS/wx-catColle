@@ -52,6 +52,7 @@ Page({
    */
   onShow: function () {
     let tabBar = this.getTabBar()
+    tabBar.setTabBar()
     let order = tabBar.data.list.length - 1
     tabBar.setData({selected: order})
   },

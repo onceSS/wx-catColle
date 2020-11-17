@@ -9,24 +9,23 @@ Page({
   },
 
   onLoad: async function() {
-    console.log('catList onLoad()')
-
+    console.log('cat-list onLoad()')
     let {role} = await privilege.getRole()
     console.log('current user is ', role)
-    var tabBar = this.getTabBar()
     if(role == 'guest') {
-      tabBar.setTabBar(1)
+      app.globalData.tabBarType = 1
     } else {
-      tabBar.setTabBar(2)
+      app.globalData.tabBarType = 2
     }
-    
+    this.getTabBar().setTabBar()
   },
 
   onShow: function() {
+    console.log('cat-list onShow')
+    this.getTabBar().setTabBar()
     this.getTabBar().setData({selected: 0})
 
     this.getCatList();
-
   },
 
   onTapCreate: function() {
@@ -71,8 +70,8 @@ Page({
   },
 
   onTapBtn() {
-    var tabBar = this.getTabBar()
-    tabBar.setTabBar(2)
+    app.globalData.tabBarType = 1
+    this.getTabBar().setTabBar()
   }
 
 })
