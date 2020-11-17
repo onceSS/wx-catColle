@@ -28,49 +28,60 @@ const PRIVILEGE = [
 
 const getOpenid = async function() {
   var openid = ''
-  if(app.globalData.userOpenid == '' ) {
+  if(app.globalData.userOpenid != '' ) {
+    openid = app.globalData.userOpenid
+  } else {
     await wx.cloud.callFunction({
       name: 'getOpenData'
     }).then(res => {
       openid = res.result.openid
       app.globalData.userOpenid = openid
     })
-  } else {
-    openid = app.globalData.userOpenid == ''
   }
   return openid
 }
 
 const getRole = async function () {
-  var openid = getOpenid()
   var thisRole = {}
-  const db = wx.cloud.database()
-  await db.collection('user').where({
-    _openid: openid
-  }).get().then(res => {
-    if(res.data.length == 0) {
-      app.globalData
-      thisRole = ROLE[0]
-    } else {
+  if(app.globalData.userRole != '') {
+    thisRole = {
+      role: app.globalData.userRole,
+      roleName: app.globalData.userRoleName,
+      privilege: app.globalData.userPrivilege
+    }
+    return thisRole
+  } else {
+    var openid = getOpenid()
+    const db = wx.cloud.database()
+    await db.collection('user').where({
+      _openid: openid
+    }).get().then(res => {
+      var targetRole = ''
+      if(res.data.length == 0) {
+        targetRole = 'guest'
+      } else {
+        targetRole = res.data[0].role
+      }
       let i
       for(i = 0; i < ROLE.length; i ++) {
-        if(res.data[0].role == ROLE[i].role) {
+        if(targetRole == ROLE[i].role) {
           thisRole = ROLE[i]
           break
         }
       }
-    }
-  })
-  app.globalData.role = thisRole.role
-  app.globalData.roleName = thisRole.roleName
-  return thisRole
+    })
+    app.globalData.userRole = thisRole.role
+    app.globalData.userRoleName = thisRole.roleName
+    app.globalData.userPrivilege = thisRole.privilege
+    return thisRole
+  }
 }
 
-const checkPrivilege = function(code) {
-  if(app.globalData.userRole == '') {getRole()}
+const checkPrivilege = async function(code) {
+  var thisRole = await getRole()
   let i, j
   for(i = 0; i < ROLE.length; i ++) {
-    if(app.globalDta.userRole == ROLE[i].role) {
+    if(thisRole.role == ROLE[i].role) {
       for(j = 0; j < ROLE[i].privilege.length; j ++) {
         if(code == ROLE[i].privilege[j]) {
           return 1
@@ -113,7 +124,6 @@ const showPrivilege = function(thisRole) {
 }
 
 const initPrivilege = function() {
-
 }
 
 module.exports = {

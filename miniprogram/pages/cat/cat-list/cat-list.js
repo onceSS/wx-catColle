@@ -10,6 +10,7 @@ Page({
 
   onLoad: async function() {
     console.log('catList onLoad()')
+
     let {role} = await privilege.getRole()
     console.log('current user is ', role)
     var tabBar = this.getTabBar()
@@ -18,6 +19,7 @@ Page({
     } else {
       tabBar.setTabBar(2)
     }
+    
   },
 
   onShow: function() {
