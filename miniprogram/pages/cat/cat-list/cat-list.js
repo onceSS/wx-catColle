@@ -48,7 +48,7 @@ Page({
     router.push({
       name: 'catDetail',
       data: {
-        cat_id: e.currentTarget.dataset.catid
+        catId: e.currentTarget.dataset.catid
       }
     })
   },

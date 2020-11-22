@@ -1,6 +1,7 @@
 //catDetail.js
 const app = getApp()
 const router = require('../../../router/index')
+import {deleteCat, getCat} from '../../../api/index'
 
 Page({
   data: {
@@ -9,7 +10,6 @@ Page({
     name: '',
     avatarUrl: '',
     gender: null,
-    genderIconUrl: '',
     area: '',
     description: '',
     relationship: ''
@@ -18,34 +18,25 @@ Page({
   onLoad: function(options) {
     const optionsData = router.extract(options);
     console.log('optionsData', optionsData);
-    if(optionsData.is_from_list == 0) {
+    if(optionsData.isFromList == 0) {
       this.setData({
         isFromList: 0
       })
     }
 
-    const db = wx.cloud.database();
-    db.collection('cat').doc(optionsData.cat_id).get()
-    .then(res => {
-      let genderIconUrl = '';
-      if(res.data.gender==1) {
-        genderIconUrl= '../../../images/baseIcon/gender/male.svg'
-      }else if(res.data.gender==2) {
-        genderIconUrl= '../../../images/baseIcon/gender/female.svg'
-      }else {
-        genderIconUrl= ''
-      }
+    getCat(optionsData.catId).
+    then(res => {
       this.setData({
-        catId: res.data._id,
-        name: res.data.name,
-        avatarUrl: res.data.avatarUrl,
-        genderIconUrl: genderIconUrl,
-        gender: res.data.gender,
-        area: res.data.area,
-        description: res.data.description,
-        relationship: res.data.relationship
+        catId: res._id,
+        name: res.name,
+        avatarUrl: res.avatarUrl,
+        gender: res.gender,
+        area: res.area,
+        description: res.description,
+        relationship: res.relationship
       })
     })
+
     
   },
 
@@ -66,11 +57,8 @@ Page({
       content: '确定删除"'+this.data.name+'"吗？',
       success (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
-          const db = wx.cloud.database();
-          db.collection('cat').doc(catId).remove()
+          deleteCat(catId)
           .then(res => {
-            console.log(res.data)
             router.relaunch({
               name: 'catList',
               data: {

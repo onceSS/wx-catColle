@@ -17,7 +17,8 @@
         <view class="form-item label-item">猫猫: </view>
         <view class="form-section-inline form-item">
           <view name="name" class="form-item form-item-inline content-item">{{name}}</view>
-          <image class="gender-icon form-item-inline" src="{{genderIconUrl}}"></image>
+          <image wx:if="{{item.gender == 1}}"class="gender-icon form-item-inline" src="../../images/baseIcon/gender/male.svg"></image>
+          <image wx:if="{{item.gender == 2}}"class="gender-icon form-item-inline" src="../../images/baseIcon/gender/female.svg"></image>
         </view>
       </view>
 
