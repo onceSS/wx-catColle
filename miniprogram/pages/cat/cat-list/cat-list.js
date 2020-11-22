@@ -2,11 +2,14 @@
 const app = getApp()
 const router = require('../../../router/index');
 const privilege = require('../../../privilege/index')
+const api = require('../../../api/index')
+
 
 Page({
   data: {
     catList: []
   },
+
 
   onLoad: async function() {
     console.log('cat-list onLoad()')
@@ -69,9 +72,10 @@ Page({
     })
   },
 
-  onTapBtn() {
-    app.globalData.tabBarType = 1
-    this.getTabBar().setTabBar()
+  async onTapBtn() {
+    let catList = await api.getCatList()
+
+    console.log(catList)
   }
 
 })
