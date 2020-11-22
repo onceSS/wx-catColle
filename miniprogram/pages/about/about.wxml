@@ -1,0 +1,16 @@
+<!--pages/about/about.wxml-->
+<view class="root">
+  <view class="h3">本小程序仅凭兴趣书写</view>
+
+  <view class="h3">请勿对本程序抱有希望</view>
+
+  <view class="h3">本程序目前不负责保管用户数据</view>
+
+  <view class="h2">作者</view>
+
+  <view class="content">once</view>
+
+  <view class="content">once_ciel@outlook.com</view>
+
+
+</view>

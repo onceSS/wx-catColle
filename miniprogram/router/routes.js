@@ -12,6 +12,9 @@ module.exports = {
   imageCropper: {
     path: '/pages/image-cropper/image-cropper',
   },
+  about: {
+    path: '/pages/about/about'
+  }
 };
 
 /*

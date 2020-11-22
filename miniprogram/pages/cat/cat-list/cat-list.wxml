@@ -8,7 +8,8 @@
     <view class="cat-list list-{{index}}" data-catid="{{item._id}}" bindtap="onTapCat">
       <image class="cat-avatar" src="{{item.avatarUrl}}" mode="aspectFill" ></image>
       <view class="cat-name">{{item.name}}</view>
-      <image class="cat-gender" src="{{item.genderIconUrl}}"></image>
+      <image wx:if="{{item.gender == 1}}" class="cat-gender" src="../../../images/baseIcon/gender/male.svg"></image>
+      <image wx:if="{{item.gender == 2}}" class="cat-gender" src="../../../images/baseIcon/gender/female.svg"></image>
     </view>
   </block>
 

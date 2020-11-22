@@ -126,6 +126,6 @@ const showPrivilege = function(thisRole) {
 const initPrivilege = function() {
 }
 
-module.exports = {
+export {
   getOpenid, getRole, checkPrivilege, showPrivilege
 }

@@ -1,5 +1,7 @@
 // pages/user/user.js
-import privilege from '../../privilege/index'
+const router = require('../../router/index')
+import {getOpenid} from '../../api/index'
+
 Page({
 
   /**
@@ -101,7 +103,7 @@ Page({
     var role = ''
     var roleName = ''
     var openid = ''
-    openid = privilege.getOpenid()
+    openid = getOpenid()
     const db = wx.cloud.database()
     await db.collection('user').where({
       _openid: openid
@@ -138,6 +140,7 @@ Page({
 
   },
   onTapAbout() {
-    
+    console.log('onTapAbout()')
+    router.push({name: 'about'})
   }
 })

@@ -4,7 +4,8 @@
     "pages/index/index",
     "pages/user/user",
     "pages/admin/admin",
-    "pages/cat/favorite/favorite"
+    "pages/cat/favorite/favorite",
+    "pages/about/about"
   ],
   "usingComponents": {
     "custom-tab-bar": "custom-tab-bar/index"

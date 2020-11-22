@@ -1,19 +1,16 @@
 //catList.js
 const app = getApp()
 const router = require('../../../router/index')
-const privilege = require('../../../privilege/index')
-
-import {getCatList} from '../../../api/index'
+import {getCatList,getRole} from '../../../api/index'
 
 Page({
   data: {
     catList: []
   },
 
-
   onLoad: async function() {
     console.log('cat-list onLoad()')
-    let {role} = await privilege.getRole()
+    let {role} = await getRole()
     console.log('current user is ', role)
     if(role == 'guest') {
       app.globalData.tabBarType = 1
@@ -24,46 +21,30 @@ Page({
   },
 
   onShow: function() {
-    console.log('cat-list onShow')
+    console.log('cat-list onShow()')
     this.getTabBar().setTabBar()
     this.getTabBar().setData({selected: 0})
 
-    this.getCatList();
+    this.setList();
+  },
+
+  onPullDownRefresh: function () {
+    this.setList()
+    wx.stopPullDownRefresh()
   },
 
   onTapCreate: function() {
     router.push({name: 'catCreate'})
   },
 
-  getCatList: async function() {
-    let nativeCatList = [];
-    const db = wx.cloud.database();
-    await db.collection('cat').get()
-    .then(res => {
-      nativeCatList = res.data;
-    })
-    console.log('nativeCatList', nativeCatList)
-
-    let length = nativeCatList.length
-    for(let i=0; i<length; i++) {
-      if(nativeCatList[i].gender==1) {
-        nativeCatList[i].genderIconUrl= '../../../images/baseIcon/gender/male.svg'
-      }else if(nativeCatList[i].gender==2) {
-        nativeCatList[i].genderIconUrl= '../../../images/baseIcon/gender/female.svg'
-      }else {
-        nativeCatList[i].genderIconUrl= ''
-      }
-    }
-
+  setList: async function() {
+    let catList = await getCatList(0)
     this.setData({
-      catList: nativeCatList
+      catList: catList
     })
-    console.log('this.data.catList', this.data.catList)
-    
   },
 
   onTapCat(e) {
-    console.log('e.currentTarget', e.currentTarget)
     router.push({
       name: 'catDetail',
       data: {
