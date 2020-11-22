@@ -1,9 +1,9 @@
 //catList.js
 const app = getApp()
-const router = require('../../../router/index');
+const router = require('../../../router/index')
 const privilege = require('../../../privilege/index')
-const api = require('../../../api/index')
 
+import {getCatList} from '../../../api/index'
 
 Page({
   data: {
@@ -72,10 +72,8 @@ Page({
     })
   },
 
-  async onTapBtn() {
-    let catList = await api.getCatList()
-
-    console.log(catList)
+  onTapBtn() {
+    console.log(getCatList())
   }
 
 })
