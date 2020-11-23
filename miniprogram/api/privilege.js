@@ -1,9 +1,16 @@
 const app = getApp()
+
+//base role privilege
 const ROLE = [
   {
     role: 'guest',
     roleName: '游客',
     privilege: ['read','apply']
+  },
+  {
+    role: 'member',
+    roleName: '会员',
+    privilege: ['read','apply', 'private']
   },
   {
     role: 'worker',
@@ -25,6 +32,15 @@ const PRIVILEGE = [
   {code: 'grant', name: '赋予权限'},
   {code: 'private', name: '私人猫猫'},
 ]
+
+const getBaseRole = function(role) {
+  var i
+  for(i = 0; i < ROLE.length; i ++) {
+    if(ROLE[i].role == role) {
+      return ROLE[i]
+    }
+  }
+}
 
 const getOpenid = async function() {
   var openid = ''
@@ -51,22 +67,18 @@ const getRole = async function () {
     }
     return thisRole
   } else {
-    var openid = getOpenid()
+    var openid = await getOpenid()
     const db = wx.cloud.database()
     await db.collection('user').where({
       _openid: openid
     }).get().then(res => {
-      var targetRole = ''
       if(res.data.length == 0) {
-        targetRole = 'guest'
+        thisRole = ROLE[0]
       } else {
-        targetRole = res.data[0].role
-      }
-      let i
-      for(i = 0; i < ROLE.length; i ++) {
-        if(targetRole == ROLE[i].role) {
-          thisRole = ROLE[i]
-          break
+        thisRole = {
+          role: res.data[0].role,
+          roleName: res.data[0].roleName,
+          privilege: res.data[0].privilege
         }
       }
     })
@@ -77,17 +89,11 @@ const getRole = async function () {
   }
 }
 
-const checkPrivilege = async function(code) {
+const checkPrivilege = async function(privilege) {
   var thisRole = await getRole()
-  let i, j
-  for(i = 0; i < ROLE.length; i ++) {
-    if(thisRole.role == ROLE[i].role) {
-      for(j = 0; j < ROLE[i].privilege.length; j ++) {
-        if(code == ROLE[i].privilege[j]) {
-          return 1
-        }
-      }
-      return 0
+  for(var i = 0; i < thisRole.privilege.length; i ++) {
+    if(thisRole.privilege[i] == privilege) {
+      return 1
     }
   }
   return 0
@@ -123,9 +129,6 @@ const showPrivilege = function(thisRole) {
   }
 }
 
-const initPrivilege = function() {
-}
-
 export {
-  getOpenid, getRole, checkPrivilege, showPrivilege
+  getBaseRole, getOpenid, getRole, checkPrivilege, showPrivilege
 }

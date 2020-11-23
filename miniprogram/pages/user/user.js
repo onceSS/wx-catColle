@@ -1,6 +1,6 @@
 // pages/user/user.js
 const router = require('../../router/index')
-import {getOpenid} from '../../api/index'
+import {getOpenid, getUser} from '../../api/index'
 
 Page({
 
@@ -15,6 +15,7 @@ Page({
     userOpenid: '',
     role: '',
     roleName: '',
+    privilege:[],
     openid: ''
   },
 
@@ -102,25 +103,13 @@ Page({
   async setUserInfo(userInfo) {
     var role = ''
     var roleName = ''
+    var privilege = []
     var openid = ''
     openid = getOpenid()
-    const db = wx.cloud.database()
-    await db.collection('user').where({
-      _openid: openid
-    }).get().then(res => {
-      if(res.data.length == 0) {
-        db.collection('user').add({
-          data: {
-            role: 'guest',
-            roleName: '游客'
-          }
-        })
-        role = 'guest'
-        roleName = '游客'
-      } else {
-        role = res.data[0].role
-        roleName = res.data[0].roleName
-      }
+    await getUser(openid).then(res => {
+      role = res.role
+      roleName = res.roleName
+      privilege = res.privilege
     })
 
     this.setData({
@@ -129,7 +118,8 @@ Page({
       userGender: userInfo.gender,
       isAuthed: true,
       role: role,
-      roleName: roleName
+      roleName: roleName,
+      privilege = privilege
     })
   },
 
