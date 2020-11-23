@@ -12,10 +12,10 @@ Page({
     console.log('cat-list onLoad()')
     let {role} = await getRole()
     console.log('current user is ', role)
-    if(role == 'guest') {
-      app.globalData.tabBarType = 1
-    } else {
+    if(role == 'worker' || role == 'admin') {
       app.globalData.tabBarType = 2
+    } else {
+      app.globalData.tabBarType = 1
     }
     this.getTabBar().setTabBar()
   },

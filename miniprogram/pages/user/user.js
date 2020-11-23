@@ -15,7 +15,7 @@ Page({
     userOpenid: '',
     role: '',
     roleName: '',
-    privilege:[],
+    privilege: [],
     openid: ''
   },
 
@@ -112,14 +112,14 @@ Page({
       privilege = res.privilege
     })
 
-    this.setData({
+    await this.setData({
       userName: userInfo.nickName,
       userAvatarUrl: userInfo.avatarUrl,
       userGender: userInfo.gender,
       isAuthed: true,
       role: role,
       roleName: roleName,
-      privilege = privilege
+      privilege: privilege
     })
   },
 

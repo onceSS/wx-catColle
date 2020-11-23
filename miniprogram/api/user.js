@@ -1,7 +1,7 @@
 import {getBaseRole} from './privilege'
 
 export const getUser = async function(openid) {
-  var user = null
+  var user = {}
   const db = wx.cloud.database()
   await db.collection('user').where({
     _openid: openid
