@@ -33,7 +33,7 @@ const PRIVILEGE = [
   {code: 'private', name: '私人猫猫'},
 ]
 
-const getBaseRole = function(role) {
+export const getBaseRole = function(role) {
   var i
   for(i = 0; i < ROLE.length; i ++) {
     if(ROLE[i].role == role) {
@@ -42,7 +42,7 @@ const getBaseRole = function(role) {
   }
 }
 
-const getOpenid = async function() {
+export const getOpenid = async function() {
   var openid = ''
   if(app.globalData.userOpenid != '' ) {
     openid = app.globalData.userOpenid
@@ -57,7 +57,7 @@ const getOpenid = async function() {
   return openid
 }
 
-const getRole = async function () {
+export const getRole = async function () {
   var thisRole = {}
   if(app.globalData.userRole != '') {
     thisRole = {
@@ -89,7 +89,7 @@ const getRole = async function () {
   }
 }
 
-const checkPrivilege = async function(privilege) {
+export const checkPrivilege = async function(privilege) {
   var thisRole = await getRole()
   for(var i = 0; i < thisRole.privilege.length; i ++) {
     if(thisRole.privilege[i] == privilege) {
@@ -99,7 +99,7 @@ const checkPrivilege = async function(privilege) {
   return 0
 }
 
-const showPrivilege = function(thisRole) {
+export const showPrivilege = function(thisRole) {
   let thisRoleName = ''
   let thisPrivilegeCode = []
   let i, j
@@ -129,6 +129,3 @@ const showPrivilege = function(thisRole) {
   }
 }
 
-export {
-  getBaseRole, getOpenid, getRole, checkPrivilege, showPrivilege
-}
