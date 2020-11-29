@@ -7,7 +7,7 @@
         <image
           name="avatarUrl"
           class="cat-avatar form-item-inline"
-          style="background-image: url('../../../images/baseIcon/cat_pre.jpeg')"
+          style="background-image: url('../../../images/baseIcon/yarn_logo.png')"
           src="{{avatarUrl}}"
           mode="aspectFill"
         ></image>

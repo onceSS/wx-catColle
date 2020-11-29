@@ -4,7 +4,7 @@ const router = require('../../router/index')
 Page({
   data: {
     imageUrl:'',
-    sourcePageName: '',
+    imageDataName: '',
     width: 250,//宽度
     height: 250,//高度
     max_width: 400,
@@ -19,7 +19,7 @@ Page({
     console.log('optionsData',optionsData)
     this.setData({
       imageUrl: optionsData.imageUrl,
-      sourcePageName: optionsData.sourcePageName
+      imageDataName: optionsData.imageDataName
     })
   },
   cropperload(e) {
@@ -58,23 +58,17 @@ Page({
   submit(){
     this.cropper.getImg((obj)=>{
       console.log('obj.url', obj.url)
-      app.globalData.imageUrl = obj.url
       let arr = getCurrentPages()
       let previousPage = arr[arr.length - 2]
-      wx.navigateBack({
-        delta: 0,
-        success: function(res){
-
-          previousPage.setData({
-            avatarUrl: obj.url
-          })
-        }
+      previousPage.setData({
+        [this.data.imageDataName]: obj.url
       })
+      router.pop()
+
     })
   },
 
   cancel() {
-    app.globalData.imgUrl = ''
     router.pop()
   }
 

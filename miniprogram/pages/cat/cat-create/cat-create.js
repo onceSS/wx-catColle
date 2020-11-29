@@ -178,12 +178,11 @@ Page({
       success: chooseResult => {
         const path = chooseResult.tempFilePaths[0];
 
-        app.globalData.imageUrl = ''
-
         router.push({
           name: 'imageCropper',
           data: {
             imageUrl: path,
+            imageDataName: 'avatarUrl'
           },
         })
       }

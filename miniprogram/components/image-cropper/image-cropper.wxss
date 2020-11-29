@@ -43,6 +43,7 @@
   position: relative;
   transition-duration: .3s;
   border-radius: 50%;
+  border: solid white 1rpx;
 }
 .content_middle_right{
   flex: auto;

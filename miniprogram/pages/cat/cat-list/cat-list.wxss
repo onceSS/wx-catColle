@@ -26,8 +26,9 @@
 }
 
 .cat-avatar {
-  width: 160rpx;
-  height: 160rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
 }
 
 .cat-name {

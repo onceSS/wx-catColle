@@ -65,3 +65,7 @@ view{
   min-width:70rpx;
   margin:0 4rpx;
 }
+
+#image-copper {
+  border-radius: 50%;
+}
